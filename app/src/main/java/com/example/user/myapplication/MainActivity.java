@@ -1,12 +1,13 @@
 package com.example.user.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
-import android.hardware.Camera;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         toast = Toast.makeText(this, "토스트 메시지", Toast.LENGTH_LONG);
         vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
         camera = Camera.open();
-     }
+    }
 
     @Override
     public void onDestroy() {
@@ -55,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
                 param2.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
                 camera.setParameters(param2);
                 camera.stopPreview();
+                break;
+            case R.id.btn_nextPage:
+                Intent intent = new Intent(this, SubActivity.class);
+                startActivity(intent);
                 break;
         }
     }
